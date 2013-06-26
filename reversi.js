@@ -3,10 +3,10 @@ var ReversiJs = {};
 ReversiJs.Application = function(display, gameSize) {
   this.gameSize = gameSize;
   this.display = display;
+  this.game = new ReversiJs.Core.Game(gameSize);
 
-  var cells = this.initializeBoard(display, gameSize);
-
-  this.cells = cells;
+  this.board = this.initializeBoard(display, gameSize);
+  this.update();
 };
 
 $.extend(ReversiJs.Application.prototype, {
@@ -55,5 +55,23 @@ $.extend(ReversiJs.Application.prototype, {
     });
 
     return cells;
+  },
+  update: function()
+  {
+    var cells = this.game.cells;
+    for (var i = 0; i < cells.length; i++)
+    {
+      switch (cells[i])
+      {
+      case ReversiJs.Core.Disk.Dark:
+        this.board[i].text("kuro");
+        this.board[i].css("color", "black");
+        break;
+      case ReversiJs.Core.Disk.Light:
+        this.board[i].text("siro");
+        this.board[i].css("color", "white");
+        break;
+      }
+    }
   }
 });
