@@ -51,6 +51,12 @@ $.extend(ReversiJs.Application.prototype, {
           var td = $("<td class='cell'/>");
           td.appendTo(tr);
           cells.push(td);
+          td.click((function(x, y, self) {
+            return function() {
+              console.log({x:x, y:y});
+              self.putDisk(x, y);
+            };
+          })(x - 1, y, this));
         }
       }
     }
