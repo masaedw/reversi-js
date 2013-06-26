@@ -35,6 +35,9 @@ ReversiJs.Core.Game = function(size) {
 
 $.extend(ReversiJs.Core.Game.prototype, {
   getAvailableCells: function(){},
-  putDisk: function(x, y){},
+  putDisk: function(x, y)
+  {
+    this.cells[this._xy(x, y)] = this.currentPlayer.disk();
+  },
   _xy: function(x, y) { return Math.floor(x) * this.size + Math.floor(y); }
 });

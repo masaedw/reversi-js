@@ -80,5 +80,10 @@ $.extend(ReversiJs.Application.prototype, {
         break;
       }
     }
-  }
+  },
+  putDisk: function(x, y)
+  {
+    this.game.putDisk(x, y);
+    this.update();
+  },
 });
