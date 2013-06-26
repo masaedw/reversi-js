@@ -5,12 +5,17 @@ ReversiJs.Application = function(display, gameSize) {
   this.display = display;
   this.game = new ReversiJs.Core.Game(gameSize);
 
-  this.board = this.initializeBoard(display, gameSize);
+  // jQuery Objects
+  // the text output area
+  this.message = $("<p class='message'/>").appendTo(display);
+  // the array of cells on the game board
+  this.board = this._initializeBoard(display, gameSize);
+
   this.update();
 };
 
 $.extend(ReversiJs.Application.prototype, {
-  initializeBoard: function(display, size)
+  _initializeBoard: function(display, size)
   {
     var body = [];
 
@@ -50,14 +55,16 @@ $.extend(ReversiJs.Application.prototype, {
       }
     }
 
+    var table = $("<table />").appendTo(display);
     body.forEach(function(i){
-      display.append(i);
+      table.append(i);
     });
 
     return cells;
   },
   update: function()
   {
+    this.message.text(this.game.currentPlayer.toString() + " player's turn");
     var cells = this.game.cells;
     for (var i = 0; i < cells.length; i++)
     {
