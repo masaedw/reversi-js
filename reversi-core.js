@@ -6,7 +6,8 @@ ReversiJs.Core.Player = function(name) {
 
 $.extend(ReversiJs.Core.Player.prototype, {
   toString: function() { return this.name; },
-  disk: function() {
+  disk: function()
+  {
     switch (this)
     {
     case ReversiJs.Core.Player.Dark:  return ReversiJs.Core.Disk.Dark;
