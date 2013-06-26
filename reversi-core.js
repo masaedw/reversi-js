@@ -27,10 +27,10 @@ ReversiJs.Core.Game = function(size) {
   this.size = size;
   this.cells = new Array(size * size);
 
-  this.cells[this._xy(size/2-1, size/2-1)] = ReversiJs.Core.Disk.Light;
-  this.cells[this._xy(size/2-0, size/2-1)] = ReversiJs.Core.Disk.Dark;
-  this.cells[this._xy(size/2-1, size/2-0)] = ReversiJs.Core.Disk.Dark;
-  this.cells[this._xy(size/2-0, size/2-0)] = ReversiJs.Core.Disk.Light;
+  this._cell(size/2-1, size/2-1, ReversiJs.Core.Disk.Light);
+  this._cell(size/2-0, size/2-1, ReversiJs.Core.Disk.Dark);
+  this._cell(size/2-1, size/2-0, ReversiJs.Core.Disk.Dark);
+  this._cell(size/2-0, size/2-0, ReversiJs.Core.Disk.Light);
   this.currentPlayer = ReversiJs.Core.Player.Dark;
 };
 
@@ -38,7 +38,24 @@ $.extend(ReversiJs.Core.Game.prototype, {
   getAvailableCells: function(){},
   putDisk: function(x, y)
   {
-    this.cells[this._xy(x, y)] = this.currentPlayer.disk();
+    if (this._cell(x, y) === undefined)
+    {
+      this._cell(x, y, this.currentPlayer.disk());
+      this.currentPlayer = this.currentPlayer == ReversiJs.Core.Player.Dark
+        ? ReversiJs.Core.Player.Light
+        : ReversiJs.Core.Player.Dark;
+    }
+  },
+  _cell: function(x, y, disk)
+  {
+    if (disk === undefined)
+    {
+      return this.cells[this._xy(x, y)];
+    }
+    else
+    {
+      return this.cells[this._xy(x, y)] = disk;
+    }
   },
   _xy: function(x, y) { return Math.floor(x) * this.size + Math.floor(y); }
 });
