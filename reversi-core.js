@@ -1,8 +1,22 @@
 ReversiJs.Core = {};
 
-ReversiJs.Core.Player = {};
-ReversiJs.Core.Player.Dark = "Dark";
-ReversiJs.Core.Player.Light = "Light";
+ReversiJs.Core.Player = function(name) {
+  this.name = name;
+};
+
+$.extend(ReversiJs.Core.Player.prototype, {
+  toString: function() { return this.name; },
+  disk: function() {
+    switch (this)
+    {
+    case ReversiJs.Core.Player.Dark:  return ReversiJs.Core.Disk.Dark;
+    case ReversiJs.Core.Player.Light: return ReversiJs.Core.Disk.Light;
+    }
+  }
+});
+
+ReversiJs.Core.Player.Dark = new ReversiJs.Core.Player("Dark");
+ReversiJs.Core.Player.Light = new ReversiJs.Core.Player("Light");
 
 ReversiJs.Core.Disk = {};
 ReversiJs.Core.Disk.Dark = "Dark";
