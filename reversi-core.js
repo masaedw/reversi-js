@@ -57,5 +57,5 @@ $.extend(ReversiJs.Core.Game.prototype, {
       return this.cells[this._xy(x, y)] = disk;
     }
   },
-  _xy: function(x, y) { return Math.floor(x) * this.size + Math.floor(y); }
+  _xy: function(x, y) { return Math.floor(y) * this.size + Math.floor(x); }
 });
