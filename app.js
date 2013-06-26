@@ -1,9 +1,21 @@
-$(function () {
-  var gameSize = 4;
+var ReversiJs = {};
 
-  function initializeGame(display, size)
+// Gameオブジェクト
+ReversiJs.Game = function(display, gameSize) {
+  this.gameSize = gameSize;
+  this.display = display;
+
+  var cells = this.initializeBoard(display, gameSize);
+
+  this.cells = cells;
+};
+
+$.extend(ReversiJs.Game.prototype, {
+  initializeBoard: function(display, size)
   {
     var body = [];
+
+    var cells = [];
 
     var tr = $("<tr/>");
     body.push(tr);
@@ -34,6 +46,7 @@ $(function () {
         {
           var td = $("<td class='cell'/>");
           td.appendTo(tr);
+          cells.push(td);
         }
       }
     }
@@ -41,7 +54,14 @@ $(function () {
     body.forEach(function(i){
       display.append(i);
     });
-  }
 
-  initializeGame($("#display"), gameSize);
+    return cells;
+  }
+});
+
+
+$(function () {
+  var gameSize = 4;
+
+  ReversiJs.theGame = new ReversiJs.Game($("#display"), gameSize);
 });
