@@ -16,7 +16,7 @@ ReversiJs.Core.Game = function(size) {
   this.cells[this._xy(size/2-0, size/2-1)] = ReversiJs.Core.Disk.Dark;
   this.cells[this._xy(size/2-1, size/2-0)] = ReversiJs.Core.Disk.Dark;
   this.cells[this._xy(size/2-0, size/2-0)] = ReversiJs.Core.Disk.Light;
-  this.currentPlayer = ReversiJs.Core.Player.Light;
+  this.currentPlayer = ReversiJs.Core.Player.Dark;
 };
 
 $.extend(ReversiJs.Core.Game.prototype, {
@@ -24,5 +24,3 @@ $.extend(ReversiJs.Core.Game.prototype, {
   putDisk: function(x, y){},
   _xy: function(x, y) { return Math.floor(x) * this.size + Math.floor(y); }
 });
-
-
