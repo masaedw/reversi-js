@@ -1,4 +1,6 @@
+var Application;
+
 $(function () {
   var gameSize = 4;
-  ReversiJs.theGame = new ReversiJs.Game($("#display"), gameSize);
+  Application = new ReversiJs.Application($("#display"), gameSize);
 });

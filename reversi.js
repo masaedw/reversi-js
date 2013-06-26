@@ -1,7 +1,6 @@
 var ReversiJs = {};
 
-// Gameオブジェクト
-ReversiJs.Game = function(display, gameSize) {
+ReversiJs.Application = function(display, gameSize) {
   this.gameSize = gameSize;
   this.display = display;
 
@@ -10,7 +9,7 @@ ReversiJs.Game = function(display, gameSize) {
   this.cells = cells;
 };
 
-$.extend(ReversiJs.Game.prototype, {
+$.extend(ReversiJs.Application.prototype, {
   initializeBoard: function(display, size)
   {
     var body = [];
