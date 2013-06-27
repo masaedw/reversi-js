@@ -70,17 +70,17 @@ $.extend(ReversiJs.Application.prototype, {
   },
   update: function()
   {
-    this.message.text(this.game.currentPlayer.toString() + " player's turn");
+    this.message.text(this.game.currentPlayer + " player's turn");
     var cells = this.game.cells;
     for (var i = 0; i < cells.length; i++)
     {
       switch (cells[i])
       {
-      case ReversiJs.Core.Disk.Dark:
+      case ReversiJs.Core.Color.Dark:
         this.board[i].text("kuro");
         this.board[i].css("color", "black");
         break;
-      case ReversiJs.Core.Disk.Light:
+      case ReversiJs.Core.Color.Light:
         this.board[i].text("siro");
         this.board[i].css("color", "white");
         break;
